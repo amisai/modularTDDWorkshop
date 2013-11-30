@@ -27,7 +27,9 @@ public class RepositoryFileUser implements RepositoryUser {
     }
 
     @Override
-    public void store() {
+    public void store(User user) {
+        loadFromFile();
+        users.put(user.getUsername(), user);
         storeToFile();
     }
 

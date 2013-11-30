@@ -18,10 +18,10 @@ public class UserService {
     }
 
     public  void follow(String username1, String  username2) {
-        User userB = repository.getUser(username2);
         User userA = repository.getUser(username1);
+        User userB = repository.getUser(username2);
         userA.follow(userB);
-        repository.store();
+        repository.store(userA);
     }
 
     public Set<User> followers(String username) {

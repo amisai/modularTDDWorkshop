@@ -1,9 +1,7 @@
 package modularTDD;
 
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Map;
-import java.util.Set;
 
 public class RepositoryMemoryUser implements RepositoryUser {
     private static Map<String, User> users = new HashMap<String, User>();
@@ -21,6 +19,6 @@ public class RepositoryMemoryUser implements RepositoryUser {
     }
 
     @Override
-    public void store() {
+    public void store(User userA) {
     }
 }

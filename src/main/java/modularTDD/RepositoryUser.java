@@ -7,5 +7,5 @@ public interface RepositoryUser {
 
     public User getUser(String username);
 
-    void store();
+    void store(User userA);
 }
