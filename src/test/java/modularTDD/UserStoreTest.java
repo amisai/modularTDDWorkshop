@@ -52,7 +52,7 @@ public class UserStoreTest {
 
         RepositoryUser repositoryUser2 = new RepositoryFileUser();
         UserService userService2 = new UserService(repositoryUser2);
-        assertTrue(userService2.followers(username1).contains(new User(username2)), "user2 is not following user1 " + userService2.followers(username1));
+        assertTrue(userService2.followers(username1).contains(username2), "user2 is not following user1 " + userService2.followers(username1));
     }
 }
 

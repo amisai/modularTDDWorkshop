@@ -1,5 +1,8 @@
 package modularTDD;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 public class UserService {
@@ -17,14 +20,18 @@ public class UserService {
         return false;
     }
 
-    public  void follow(String username1, String  username2) {
+    public void follow(String username1, String username2) {
         User userA = repository.getUser(username1);
         User userB = repository.getUser(username2);
         userA.follow(userB);
         repository.store(userA);
     }
 
-    public Set<User> followers(String username) {
-        return repository.getUser(username).getFollowers();
+    public Set<String> followers(String username) {
+        Set<String> result = new HashSet<String>();
+        for (User user : repository.getUser(username).getFollowers()) {
+            result.add(user.getUsername());
+        }
+        return result;
     }
 }

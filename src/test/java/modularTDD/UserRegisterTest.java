@@ -48,7 +48,7 @@ public class UserRegisterTest {
 
         userService.follow(username1, username2);
 
-        assertTrue(userService.followers(username1).contains(new User(username2)), "user2 is not following user1 " + userService.followers(username1));
+        assertTrue(userService.followers(username1).contains(username2), "user2 is not following user1 " + userService.followers(username1));
     }
 }
 
