@@ -3,22 +3,28 @@ package modularTDD;
 import java.util.Set;
 
 public class UserService {
+    private final RepositoryUser repository;
 
-    public static boolean register(String username) {
-        if (!RepositoryUser.isRegistered(username)) {
-            RepositoryUser.register(new User(username));
+    public UserService(RepositoryUser repositoryUser) {
+        repository = repositoryUser;
+    }
+
+    public boolean register(String username) {
+        if (!repository.isRegistered(username)) {
+            repository.register(new User(username));
             return true;
         }
         return false;
     }
 
-    public static void follow(String username1, String  username2) {
-        User userA = RepositoryUser.getUser(username1);
-        User userB = RepositoryUser.getUser(username2);
+    public  void follow(String username1, String  username2) {
+        User userB = repository.getUser(username2);
+        User userA = repository.getUser(username1);
         userA.follow(userB);
+        repository.store();
     }
 
-    public static Set<User> followers(String username) {
-        return RepositoryUser.getUser(username).getFollowers();
+    public Set<User> followers(String username) {
+        return repository.getUser(username).getFollowers();
     }
 }

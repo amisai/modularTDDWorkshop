@@ -1,10 +1,11 @@
 package modularTDD;
 
 
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
-public class User {
+public class User implements Serializable {
     String username;
     private Set<User> followers = new HashSet<User>();
 

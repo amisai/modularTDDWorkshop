@@ -1,20 +1,19 @@
 package modularTDD;
 
-
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 import static org.testng.Assert.assertFalse;
 import static org.testng.Assert.assertTrue;
 
-public class UserRegisterTest {
+public class UserStoreTest {
     RepositoryUser repositoryUser;
 
     UserService userService;
 
     @BeforeTest
     public void setUp(){
-        repositoryUser = new RepositoryMemoryUser();
+        repositoryUser = new RepositoryFileUser();
 
         userService = new UserService(repositoryUser);
     }
@@ -27,8 +26,11 @@ public class UserRegisterTest {
 
         String username2 = "@pasku2";
         userService.register(username2);
-        assertTrue(repositoryUser.isRegistered(username1), "user " + username1 + " is not registered");
-        assertTrue(repositoryUser.isRegistered(username2), "user " + username2 + "is not registered");
+
+        RepositoryUser repositoryUser2 = new RepositoryFileUser();
+
+        assertTrue(repositoryUser2.isRegistered(username1), "user " + username1 + " is not registered");
+        assertTrue(repositoryUser2.isRegistered(username2), "user " + username2 + "is not registered");
     }
 
     @Test
@@ -48,7 +50,10 @@ public class UserRegisterTest {
 
         userService.follow(username1, username2);
 
-        assertTrue(userService.followers(username1).contains(new User(username2)), "user2 is not following user1 " + userService.followers(username1));
+        RepositoryUser repositoryUser2 = new RepositoryFileUser();
+        UserService userService2 = new UserService(repositoryUser2);
+        assertTrue(userService2.followers(username1).contains(new User(username2)), "user2 is not following user1 " + userService2.followers(username1));
     }
 }
+
 
